@@ -10,8 +10,10 @@ require 'faker'
 def create_announcements
   5.times do
     body = Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote
-    publish_at = DateTime.now + rand(60) - 30
-    published = true
-    Announcement.create(body: body, publish_at: publish_at, published: published, user_id: 1)
+    Announcement.create(body: body)
   end
 end
+
+print "Creating announcements..."
+create_announcements
+print "Done!"
