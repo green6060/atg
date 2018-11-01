@@ -40,6 +40,12 @@ class NavBar extends Component {
           <Link to="/announcements">
             <Menu.Item name="announcements" />
           </Link>
+          <Link to="/tournaments">
+            <Menu.Item name="tournaments" />
+          </Link>
+          <Link to="/admintools">
+            <Menu.Item name="admin tools" />
+          </Link>
           { this.rightNavs() }
         </Menu>
       </div>
