@@ -26,6 +26,7 @@ class Announcements extends React.Component {
 
   showAnnouncements = () => {
     const { announcements } = this.props
+    debugger;
     if (announcements){
       return announcements.map( announcement => {
         return (
@@ -76,12 +77,12 @@ class Announcements extends React.Component {
     return (
       <>
         { creatingAnnouncement ? 
-          <AnnouncementForm />
+          <AnnouncementForm toggleForm={this.toggleForm} />
           :
           <>
             <Header as='h1'> 
               Announcements 
-              <Button>
+              <Button floated='right' onClick={this.toggleForm}>
                 Add Announcement
               </Button>
             </Header>
