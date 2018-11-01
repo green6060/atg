@@ -5,6 +5,7 @@ import {
     Segment,
     Header,
     Button,
+    TextArea,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addAnnouncement, } from '../reducers/announcements'
@@ -44,6 +45,7 @@ class AnnouncementForm extends React.Component {
         <Segment basic>
         <Header as='h1'>Create Announcement</Header>
           <Form onSubmit={this.handleSubmit}>
+            <Form.Field control={TextArea} label='Announcement' placeholder='Enter Your Announcement Here' />
             <Button type='submit'>Save</Button>
             <Button onClick={this.props.toggleForm}>Cancel</Button>
           </Form>
