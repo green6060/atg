@@ -21,8 +21,9 @@ class AnnouncementForm extends React.Component {
     }
   }
 
-  handleEditorChange = (ed) => {
-    this.setState({ body: ed.renderOutRaw() })
+  handleEditorChange = (e) => {
+    const { value } = e.target
+    this.setState({ body: value })
   }
   
   handleChange = (e) => {
@@ -31,10 +32,10 @@ class AnnouncementForm extends React.Component {
   }
 
   handleSubmit = (e) => {
-    const { dispatch, toggleForm, user } = this.props
     e.preventDefault()
+    const { dispatch, toggleForm, user } = this.props
     const announcement = this.state
-    dispatch(addAnnouncement({...announcement, user_id: user.id }))
+    dispatch(addAnnouncement({announcement: announcement.body}, {user_id: user.id }))
     this.setState({ body: '' })
     toggleForm()
   }
@@ -45,7 +46,7 @@ class AnnouncementForm extends React.Component {
         <Segment basic>
         <Header as='h1'>Create Announcement</Header>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Field control={TextArea} label='Announcement' placeholder='Enter Your Announcement Here' />
+            <Form.Field control={TextArea} label='Announcement' onChange={this.handleEditorChange} placeholder='Enter Your Announcement Here' />
             <Button type='submit'>Save</Button>
             <Button onClick={this.props.toggleForm}>Cancel</Button>
           </Form>

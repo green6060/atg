@@ -18,9 +18,9 @@ export const getAnnouncements = () => {
   }
 }
 
-export const addAnnouncement = (announcement) => {
+export const addAnnouncement = (body, userId) => {
   return(dispatch) => {
-    axios.post(`/api/announcements`, { announcement })
+    axios.post(`/api/announcements`, { body, userId })
     .then( res => { 
       dispatch({ type: ADD_ANNOUNCEMENT, announcement: res.data })
       dispatch(setFlash(`Announcement successfully added!`, 'green'))

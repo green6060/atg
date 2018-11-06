@@ -15,6 +15,9 @@ class NavBar extends Component {
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}
           />
+          <Link to="/account">
+            <Menu.Item name="tokens 100" />
+          </Link>
         </Menu.Menu>
       );
     }

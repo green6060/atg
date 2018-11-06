@@ -26,7 +26,6 @@ class Announcements extends React.Component {
 
   showAnnouncements = () => {
     const { announcements } = this.props
-    debugger;
     if (announcements){
       return announcements.map( announcement => {
         return (

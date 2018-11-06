@@ -6,14 +6,10 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-def create_announcements
-  5.times do
-    body = Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote
-    Announcement.create(body: body)
-  end
-end
-
 print "Creating announcements..."
-create_announcements
+10.times do
+  Product.create(
+    body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote
+  )
+end
 print "Done!"
