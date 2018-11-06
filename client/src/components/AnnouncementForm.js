@@ -35,7 +35,7 @@ class AnnouncementForm extends React.Component {
     e.preventDefault()
     const { dispatch, toggleForm, user } = this.props
     const announcement = this.state
-    dispatch(addAnnouncement({announcement: announcement.body}, {user_id: user.id }))
+    dispatch(addAnnouncement(announcement.body, user.id ))
     this.setState({ body: '' })
     toggleForm()
   }

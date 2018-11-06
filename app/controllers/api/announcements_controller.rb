@@ -10,6 +10,7 @@ class Api::AnnouncementsController < ApplicationController
   end
 
   def create
+    binding.pry
     announcement = Announcement.new(announcement_params)
 
     if announcement.save
@@ -37,6 +38,6 @@ class Api::AnnouncementsController < ApplicationController
     end
 
     def announcement_params
-      params.require(:announcement).permit(:body)
+      params.require(:announcement).permit(:body, :user_id)
     end
 end
