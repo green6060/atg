@@ -10,6 +10,7 @@ import {
 import { Link } from 'react-router-dom'
 // import { getAnnouncements, deleteAnnouncement } from '../reducers/announcements'
 import AnnouncementForm from './AnnouncementForm'
+import { formatDateDisplay } from '../utils/time'
 import axios from 'axios'
 
 
@@ -43,9 +44,11 @@ class Announcements extends React.Component {
                   <Image src={announcement.image} alt="user image" size="tiny" circular centered bordered />
                 </Grid.Column> */}
                 <Grid.Column width={16}>
-                  <div>{`${announcement.first_name} ${announcement.last_name}`}</div>
-                  <div>{(announcement.created_at)}</div>
+                  {/* <div>{`${announcement.first_name} ${announcement.last_name}`}</div> */}
+                  <div>{formatDateDisplay(announcement.created_at)}</div>
+                  <Divider/>
                   <div>{announcement.body}</div>
+                  <Divider/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
