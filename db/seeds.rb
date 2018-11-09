@@ -23,7 +23,8 @@ print "Creating announcements..."
 User.all.each do
   5.times do
     Announcement.create(
-      body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote
+      body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote,
+      user_id: 1
     )
   end
 end

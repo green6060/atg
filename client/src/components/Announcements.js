@@ -8,7 +8,7 @@ import {
   Button,
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { getAnnouncements, deleteAnnouncement } from '../reducers/announcements'
+// import { getAnnouncements, deleteAnnouncement } from '../reducers/announcements'
 import AnnouncementForm from './AnnouncementForm'
 import axios from 'axios'
 
@@ -26,10 +26,10 @@ class Announcements extends React.Component {
       .then( res => this.setState({ announcements: res.data }) )
   }
 
-  handleDelete = (announcement) => {
-    const { dispatch } = this.props
-    dispatch(deleteAnnouncement(announcement))
-  }
+  // handleDelete = (announcement) => {
+  //   const { dispatch } = this.props
+  //   dispatch(deleteAnnouncement(announcement))
+  // }
 
   showAnnouncements = () => {
     const { announcements } = this.state
@@ -101,12 +101,13 @@ class Announcements extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    course: state.course,
-    announcements: state.announcements,
-    users: state.users
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     course: state.course,
+//     announcements: state.announcements,
+//     users: state.users
+//   }
+// }
 
-export default connect(mapStateToProps)(Announcements)
+// export default connect(mapStateToProps)(Announcements)
+export default Announcements
