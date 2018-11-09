@@ -19,10 +19,13 @@ puts "Creating Admin Accounts..."
 print "Done! Email: admin@admin.com Password: password"
 
 print "Creating announcements..."
-10.times do
-  Announcement.create(
-    body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote
-  )
+
+User.all.each do
+  5.times do
+    Announcement.create(
+      body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote
+    )
+  end
 end
 
 print "Done!"
