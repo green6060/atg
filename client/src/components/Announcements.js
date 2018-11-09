@@ -10,13 +10,20 @@ import {
 import { Link } from 'react-router-dom'
 import { getAnnouncements, deleteAnnouncement } from '../reducers/announcements'
 import AnnouncementForm from './AnnouncementForm'
+import axios from 'axios'
+
 
 class Announcements extends React.Component {
-  state = { creatingAnnouncement: false }
+  state = { creatingAnnouncement: false, announcements: [] }
+
+  // componentDidMount() {
+  //   const { dispatch } = this.props
+  //   dispatch(getAnnouncements())
+  // }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(getAnnouncements())
+    axios.get('/api/announcements')
+      .then( res => this.setState({ announcements: res.data }) )
   }
 
   handleDelete = (announcement) => {
@@ -25,7 +32,7 @@ class Announcements extends React.Component {
   }
 
   showAnnouncements = () => {
-    const { announcements } = this.props
+    const { announcements } = this.state
     if (announcements){
       return announcements.map( announcement => {
         return (

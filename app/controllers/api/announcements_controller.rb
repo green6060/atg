@@ -10,7 +10,6 @@ class Api::AnnouncementsController < ApplicationController
   end
 
   def create
-    binding.pry
     announcement = Announcement.new(announcement_params)
 
     if announcement.save

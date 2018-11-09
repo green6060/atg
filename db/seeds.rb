@@ -6,10 +6,27 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "Creating Admin Accounts..."
+
+@admin = User.create(
+  firstName: 'admin',
+  lastName: 'admin',
+  email: 'admin@admin.com',
+  password: 'password',
+)
+
+print "Done! Email: admin@admin.com Password: password"
+
 print "Creating announcements..."
 10.times do
-  Product.create(
+  Announcement.create(
     body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote
   )
 end
+
 print "Done!"
+
+puts "Creation Log:"
+puts " Announcements: #{Announcement.count}"
+puts " Users: #{User.count}"
