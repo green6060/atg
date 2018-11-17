@@ -8,7 +8,6 @@ import {
   Button,
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-// import { getAnnouncements, deleteAnnouncement } from '../reducers/announcements'
 import AnnouncementForm from './AnnouncementForm'
 import { formatDateDisplay } from '../utils/time'
 import axios from 'axios'
@@ -16,11 +15,6 @@ import axios from 'axios'
 
 class Announcements extends React.Component {
   state = { creatingAnnouncement: false, announcements: [] }
-
-  // componentDidMount() {
-  //   const { dispatch } = this.props
-  //   dispatch(getAnnouncements())
-  // }
 
   componentDidMount() {
     axios.get('/api/announcements')
@@ -104,13 +98,4 @@ class Announcements extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     course: state.course,
-//     announcements: state.announcements,
-//     users: state.users
-//   }
-// }
-
-// export default connect(mapStateToProps)(Announcements)
 export default Announcements
