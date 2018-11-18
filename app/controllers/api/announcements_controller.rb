@@ -21,7 +21,7 @@ class Api::AnnouncementsController < ApplicationController
     announcement = Announcement.new(announcement_params)
 
     if announcement.save
-      render json: announcement
+      render json: announcement.all
     else
       render json: announcement.errors, status: 422
     end
