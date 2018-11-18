@@ -2,7 +2,7 @@ class Api::AnnouncementsController < ApplicationController
   before_action :set_announcement, only: [:show, :update, :destroy]
 
   def index
-    render json: Announcement.all
+    render json: Announcement.all.order("created_at DESC")
   end
 
   def show
