@@ -9,6 +9,14 @@ class Api::AnnouncementsController < ApplicationController
     render json: @announcement
   end
 
+
+  def new
+    @announcement = Announcement.new
+  end
+
+  def edit
+  end
+
   def create
     announcement = Announcement.new(announcement_params)
 

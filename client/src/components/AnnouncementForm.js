@@ -34,9 +34,8 @@ class AnnouncementForm extends React.Component {
     e.preventDefault()
     const { toggleForm } = this.props
     const body = this.state.body
-    const userId = this.state.user_id
-    // addAnnouncement(announcement.body, user.id)
-    axios.post(`/api/announcements`, { body, userId })
+    const user_id = this.state.user_id
+    axios.post(`/api/announcements`, { body, user_id })
     this.setState({ body: '' })
     toggleForm()
   }
