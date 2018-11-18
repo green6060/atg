@@ -34,25 +34,45 @@ class NavBar extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Menu pointing secondary>
-          <Link to="/">
-            <Menu.Item name="home" />
-          </Link>
-          <Link to="/announcements">
-            <Menu.Item name="announcements" />
-          </Link>
-          <Link to="/tournaments">
-            <Menu.Item name="tournaments" />
-          </Link>
-          <Link to="/admintools">
-            <Menu.Item name="admin tools" />
-          </Link>
-          { this.rightNavs() }
-        </Menu>
-      </div>
-    );
+    const { user } = this.props;
+    if (user.level == 3) {
+      return (
+        <div>
+          <Menu pointing secondary>
+            <Link to="/">
+              <Menu.Item name="home" />
+            </Link>
+            <Link to="/announcements">
+              <Menu.Item name="announcements" />
+            </Link>
+            <Link to="/tournaments">
+              <Menu.Item name="tournaments" />
+            </Link>
+            <Link to="/admintools">
+              <Menu.Item name="admin tools" />
+            </Link>
+            { this.rightNavs() }
+          </Menu>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Menu pointing secondary>
+            <Link to="/">
+              <Menu.Item name="home" />
+            </Link>
+            <Link to="/announcements">
+              <Menu.Item name="announcements" />
+            </Link>
+            <Link to="/tournaments">
+              <Menu.Item name="tournaments" />
+            </Link>
+            { this.rightNavs() }
+          </Menu>
+        </div>
+      );
+    }
   }
 }
 

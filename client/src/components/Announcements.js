@@ -14,7 +14,7 @@ import axios from 'axios'
 
 
 class Announcements extends React.Component {
-  state = { creatingAnnouncement: false, announcements: [] }
+  state = { creatingAnnouncement: false, announcements: [], users: [] }
 
   componentDidMount() {
     axios.get('/api/announcements')
