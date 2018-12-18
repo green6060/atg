@@ -28,7 +28,7 @@ class Announcements extends React.Component {
 
   handleDelete = (announcementId) => {
     axios.delete(`/api/announcements/${announcementId}`)
-      .then( res => this.setState({ announcements: res.data }) )
+    this.updateAnnouncementsOnPage()
   }
 
   showAnnouncements = () => {
@@ -58,13 +58,17 @@ class Announcements extends React.Component {
                 to={`/api/announcements/${announcement.id}`}
                 size='mini'
               >
-                  View
+                  Comments
+              </Button>
+              <Button
+                size='mini'
+                onClick={() => this.handleEdit(announcement.id)}
+              >
+                  Edit
               </Button>
               <Button
                 size='mini'
                 onClick={() => this.handleDelete(announcement.id)}
-                basic
-                compact
               >
                 Delete
               </Button>
