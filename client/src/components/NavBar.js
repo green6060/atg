@@ -35,7 +35,7 @@ class NavBar extends Component {
 
   render() {
     const { user } = this.props;
-    if (user.level == 3) {
+    if (user.level === 3) {
       return (
         <div>
           <Menu pointing secondary>

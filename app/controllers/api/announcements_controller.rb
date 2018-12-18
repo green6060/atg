@@ -21,7 +21,7 @@ class Api::AnnouncementsController < ApplicationController
     announcement = Announcement.new(announcement_params)
 
     if announcement.save
-      render json: announcement.all
+      render json: build_announcement(announcement)
     else
       render json: announcement.errors, status: 422
     end
@@ -40,6 +40,17 @@ class Api::AnnouncementsController < ApplicationController
   end
 
   private
+
+    def build_announcement(announcement)
+      {
+        id: announcement.id,
+        body: announcement.body,
+        user_id: announcement.user_id,
+        created_at: announcement.created_at,
+        updated_at: announcement.updated_at,
+      }
+    end
+
     def set_announcement
       @announcement = Announcement.find(params[:id])
     end

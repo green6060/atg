@@ -9,10 +9,11 @@ import {
     Button,
     TextArea,
 } from 'semantic-ui-react'
+import { stat } from 'fs';
 
 
 class AnnouncementForm extends React.Component {
-  state = { body: '', user_id: '' }
+  state = { body: '', user_id: ''  }
 
   componentDidMount() {
     if (this.props.user) {
@@ -30,14 +31,13 @@ class AnnouncementForm extends React.Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
+  handleSubmit = () => {
     const { toggleForm } = this.props
-    const body = this.state.body
-    const user_id = this.state.user_id
-    axios.post(`/api/announcements`, { body, user_id })
+    const { body, user_id } = this.state
+    const announcement = { body, user_id }
+    // pass announcement object back to announcement component
     this.setState({ body: '' })
-    toggleForm()
+    toggleForm(announcement)
   }
 
   render() {

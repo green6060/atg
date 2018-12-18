@@ -14,17 +14,22 @@ import axios from 'axios'
 
 
 class Announcements extends React.Component {
-  state = { creatingAnnouncement: false, announcements: [], users: [] }
+  constructor(props) {
+    super(props)
+    // this.updateAnnouncementsOnPage = this.updateAnnouncementsOnPage.bind(this)
+  }
+
+  state = { creatingAnnouncement: false, announcements: []}
 
   componentDidMount() {
     axios.get('/api/announcements')
       .then( res => this.setState({ announcements: res.data }) )
   }
 
-  // handleDelete = (announcement) => {
-  //   const { dispatch } = this.props
-  //   dispatch(deleteAnnouncement(announcement))
-  // }
+  handleDelete = (announcementId) => {
+    axios.delete(`/api/announcements/${announcementId}`)
+      .then( res => this.setState({ announcements: res.data }) )
+  }
 
   showAnnouncements = () => {
     const { announcements } = this.state
@@ -50,14 +55,14 @@ class Announcements extends React.Component {
             <div>
               <Button
                 as={Link}
-                to={`/courses/${announcement.course_id}/announcements/${announcement.id}`}
+                to={`/api/announcements/${announcement.id}`}
                 size='mini'
               >
                   View
               </Button>
               <Button
                 size='mini'
-                onClick={() => this.handleDelete(announcement)}
+                onClick={() => this.handleDelete(announcement.id)}
                 basic
                 compact
               >
@@ -70,24 +75,45 @@ class Announcements extends React.Component {
     }
   }
 
-  toggleForm = () => {
-    this.setState( state => ({ creatingAnnouncement: !state.creatingAnnouncement}) )
+  updateAnnouncementsOnPage() {
+    axios.get('/api/announcements')
+      .then( res => this.setState({ announcements: res.data }) )
+  }
+
+  handleSubmit = (announcement) => {
+    axios.post(`/api/announcements`, announcement)
+    this.updateAnnouncementsOnPage()
+  }
+
+  toggleForm = (announcement) => {
+    if (announcement){ 
+      this.handleSubmit(announcement)
+      this.setState( state => ({ creatingAnnouncement: !state.creatingAnnouncement}) )
+    } else { 
+      this.setState( state => ({ creatingAnnouncement: !state.creatingAnnouncement}) )
+    }
   }
 
   render () {
     const { creatingAnnouncement } = this.state
-
+    const { level } = this.props.user
     return (
       <>
         { creatingAnnouncement ? 
-          <AnnouncementForm toggleForm={this.toggleForm} />
+          <AnnouncementForm 
+          toggleForm={this.toggleForm}
+          />
           :
           <>
             <Header as='h1'> 
-              Announcements 
+              Announcements
+              { level > 1 &&
               <Button floated='right' onClick={this.toggleForm}>
-                Add Announcement
+              Add Announcement
               </Button>
+            }
+              
+
             </Header>
             <Divider />
             {this.showAnnouncements()}
@@ -98,4 +124,10 @@ class Announcements extends React.Component {
   }
 }
 
-export default Announcements
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Announcements)
