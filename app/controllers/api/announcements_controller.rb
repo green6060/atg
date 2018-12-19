@@ -45,6 +45,7 @@ class Api::AnnouncementsController < ApplicationController
       {
         id: announcement.id,
         body: announcement.body,
+        username: announcement.username,
         user_id: announcement.user_id,
         created_at: announcement.created_at,
         updated_at: announcement.updated_at,
@@ -57,6 +58,6 @@ class Api::AnnouncementsController < ApplicationController
     end
 
     def announcement_params
-      params.require(:announcement).permit(:body, :user_id)
+      params.require(:announcement).permit(:body, :username, :user_id)
     end
 end

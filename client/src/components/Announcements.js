@@ -12,7 +12,6 @@ import AnnouncementForm from './AnnouncementForm'
 import { formatDateDisplay } from '../utils/time'
 import axios from 'axios'
 
-
 class Announcements extends React.Component {
   constructor(props) {
     super(props)
@@ -77,7 +76,7 @@ class Announcements extends React.Component {
                   <Divider/>
                   <div>{announcement.body}</div>
                   <Divider/>
-                  <div>{`${announcement.username}`}</div>
+                  <div>{`ATG_${announcement.username}`}</div>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -109,7 +108,7 @@ class Announcements extends React.Component {
   }
 
   toggleForm = (announcement) => {
-    if (announcement){ 
+    if (announcement.body !== undefined){
       this.handleSubmit(announcement)
       this.setState( state => ({ creatingAnnouncement: !state.creatingAnnouncement}) )
     } else { 

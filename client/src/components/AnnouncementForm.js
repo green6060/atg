@@ -34,7 +34,8 @@ class AnnouncementForm extends React.Component {
   handleSubmit = () => {
     const { toggleForm } = this.props
     const { body, user_id } = this.state
-    const announcement = { body, user_id }
+    const { username } = this.props.user
+    const announcement = { body, user_id, username }
     // pass announcement object back to announcement component
     this.setState({ body: '' })
     toggleForm(announcement)
