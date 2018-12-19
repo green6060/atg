@@ -19,7 +19,7 @@ class Announcements extends React.Component {
     // this.updateAnnouncementsOnPage = this.updateAnnouncementsOnPage.bind(this)
   }
 
-  state = { creatingAnnouncement: false, announcements: []}
+  state = { creatingAnnouncement: false, announcements: [], users: [] }
 
   componentDidMount() {
     axios.get('/api/announcements')

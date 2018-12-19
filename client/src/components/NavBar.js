@@ -12,7 +12,7 @@ class NavBar extends Component {
       return (
         <Menu.Menu position='right'>
           <Link to="/account">
-            <Menu.Item name={user.firstName} />
+            <Menu.Item name={user.username} />
           </Link>
           <Menu.Item
             name='Logout'
