@@ -14,13 +14,13 @@ class NavBar extends Component {
           <Link to="/account">
             <Menu.Item name={user.username} />
           </Link>
+          <Link to="/account">
+            <Menu.Item name="AT Tokens 100" />
+          </Link>
           <Menu.Item
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}
           />
-          <Link to="/account">
-            <Menu.Item name="tokens 100" />
-          </Link>
         </Menu.Menu>
       );
     }
