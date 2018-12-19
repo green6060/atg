@@ -16,10 +16,9 @@ import axios from 'axios'
 class Announcements extends React.Component {
   constructor(props) {
     super(props)
-    // this.updateAnnouncementsOnPage = this.updateAnnouncementsOnPage.bind(this)
-  }
+    }
 
-  state = { creatingAnnouncement: false, announcements: [], users: [] }
+  state = { creatingAnnouncement: false, announcements: [] }
 
   componentDidMount() {
     axios.get('/api/announcements')
@@ -74,11 +73,11 @@ class Announcements extends React.Component {
                   <Image src={announcement.image} alt="user image" size="tiny" circular centered bordered />
                 </Grid.Column> */}
                 <Grid.Column width={16}>
-                  {/* <div>{`${announcement.first_name} ${announcement.last_name}`}</div> */}
                   <div>{formatDateDisplay(announcement.created_at)}</div>
                   <Divider/>
                   <div>{announcement.body}</div>
                   <Divider/>
+                  <div>{`${announcement.username}`}</div>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
