@@ -31,6 +31,37 @@ class Announcements extends React.Component {
     this.updateAnnouncementsOnPage()
   }
 
+  buildCrudButtons = (announcement) => {
+    const { user } = this.props
+    if (user.id === announcement.user_id) {
+      return(
+      <>
+        <Button
+        size='mini'
+        onClick={() => this.handleEdit(announcement.id)}
+        >
+          Edit
+        </Button>
+        <Button
+        size='mini'
+        onClick={() => this.handleDelete(announcement.id)}
+        >
+          Delete
+        </Button>
+      </>
+      )
+    } else if (user.level > 1) {
+      return(
+        <Button
+        size='mini'
+        onClick={() => this.handleDelete(announcement.id)}
+        >
+          Delete
+        </Button>
+        )
+    }
+  }
+
   showAnnouncements = () => {
     const { announcements } = this.state
     if (announcements){
@@ -60,18 +91,7 @@ class Announcements extends React.Component {
               >
                   Comments
               </Button>
-              <Button
-                size='mini'
-                onClick={() => this.handleEdit(announcement.id)}
-              >
-                  Edit
-              </Button>
-              <Button
-                size='mini'
-                onClick={() => this.handleDelete(announcement.id)}
-              >
-                Delete
-              </Button>
+              {this.buildCrudButtons(announcement)}
             </div>
           </Segment>
         )}
