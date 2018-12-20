@@ -33,46 +33,38 @@ class NavBar extends Component {
     );
   }
 
-  render() {
-    const { user } = this.props;
+  checkAdminTools = (user) => {
     if (user.level === 3) {
       return (
-        <div>
-          <Menu pointing secondary>
-            <Link to="/">
-              <Menu.Item name="home" />
-            </Link>
-            <Link to="/announcements">
-              <Menu.Item name="announcements" />
-            </Link>
-            <Link to="/tournaments">
-              <Menu.Item name="tournaments" />
-            </Link>
-            <Link to="/admintools">
-              <Menu.Item name="admin tools" />
-            </Link>
-            { this.rightNavs() }
-          </Menu>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <Menu pointing secondary>
-            <Link to="/">
-              <Menu.Item name="home" />
-            </Link>
-            <Link to="/announcements">
-              <Menu.Item name="announcements" />
-            </Link>
-            <Link to="/tournaments">
-              <Menu.Item name="tournaments" />
-            </Link>
-            { this.rightNavs() }
-          </Menu>
-        </div>
-      );
+        <Link to="/admintools">
+          <Menu.Item name="admin tools" />
+        </Link>
+      )
     }
+  }
+
+  render() {
+    const { user } = this.props;
+    return (
+      <div>
+        <Menu pointing secondary>
+          <Link to="/">
+            <Menu.Item name="home" />
+          </Link>
+          <Link to="/announcements">
+            <Menu.Item name="announcements" />
+          </Link>
+          <Link to="/tournaments">
+            <Menu.Item name="tournaments" />
+          </Link>
+          <Link to="/coaching">
+            <Menu.Item name="coaching" />
+          </Link>
+          { this.checkAdminTools(user) }
+          { this.rightNavs() }
+        </Menu>
+      </div>
+    );
   }
 }
 
