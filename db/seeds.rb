@@ -61,23 +61,37 @@ print "Done!"
 ##############################################################################################################
 
 print "Creating games..."
-Tournament.create(
-  
-)
+games = [
+  "PlayerUnknown's Battleground",
+  "Overwatch", 
+  "League of Legends", 
+  "Counter-Strike: Global Offensive" 
+]
+count = 0
+4.times do
+  Game.create(
+    game_name: games[count]
+  )
+  count = count + 1
+end
 
+
+print "Done!"
 
 ##############################################################################################################
 print "Creating tournaments..."
 
 5.times do
   Tournament.create(
-    tournament_name: 'The ' + Faker::ElderScrolls.region + ' Tournament'
-    tournament_description: 'A  test tournament held in the ' + Faker::ElderScrolls.region + 
-  ' region, named randomly after regions of the Elder Scrolls universe.'
+    tournament_name: 'The ' + Faker::ElderScrolls.region + ' Tournament',
+    tournament_description: 'A  test tournament held in the ' + Faker::ElderScrolls.region + ' region, named randomly after regions of the Elder Scrolls universe.'
   )
 end
 
 
 puts "Creation Log:"
-puts " Announcements: #{Announcement.count}"
 puts " Users: #{User.count}"
+puts " Announcements: #{Announcement.count}"
+puts " Games: #{Game.count}"
+puts " Tournaments: #{Tournament.count}"
+
