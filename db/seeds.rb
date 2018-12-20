@@ -61,7 +61,7 @@ print "Done!"
 ##############################################################################################################
 
 print "Creating games..."
-games = [
+game_array = [
   "PlayerUnknown's Battleground",
   "Overwatch", 
   "League of Legends", 
@@ -70,7 +70,7 @@ games = [
 count = 0
 4.times do
   Game.create(
-    game_name: games[count]
+    game_name: game_array[count]
   )
   count = count + 1
 end
@@ -79,6 +79,7 @@ end
 print "Done!"
 
 ##############################################################################################################
+
 print "Creating tournaments..."
 
 5.times do
