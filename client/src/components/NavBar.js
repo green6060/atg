@@ -11,13 +11,13 @@ class NavBar extends Component {
     if (user.id) {
       return (
         <Menu.Menu position='right'>
+          <Link to="/account">
+            <Menu.Item name="tokens 100" />
+          </Link>
           <Menu.Item
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}
           />
-          <Link to="/account">
-            <Menu.Item name="tokens 100" />
-          </Link>
         </Menu.Menu>
       );
     }
@@ -36,7 +36,7 @@ class NavBar extends Component {
   checkAdminTools = (user) => {
     if (user.level === 3) {
       return (
-        <Link to="/admintools">
+        <Link to="/admindash">
           <Menu.Item name="admin tools" />
         </Link>
       )
