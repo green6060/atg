@@ -4,6 +4,7 @@ class CreateTournaments < ActiveRecord::Migration[5.2]
       t.string :tournament
       t.string :_name
       t.text :tournament_description
+      t.belongs_to :games, foreign_key: true
 
       t.timestamps
     end

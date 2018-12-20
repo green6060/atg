@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(version: 2018_12_20_001920) do
 
   create_table "tournaments", force: :cascade do |t|
     t.text "tournament_description"
+    t.bigint "games_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "tournament_name"
+    t.index ["games_id"], name: "index_tournaments_on_games_id"
   end
 
   create_table "user_has_teams", force: :cascade do |t|
@@ -107,6 +109,7 @@ ActiveRecord::Schema.define(version: 2018_12_20_001920) do
   add_foreign_key "announcements", "users"
   add_foreign_key "team_has_tournaments", "teams"
   add_foreign_key "team_has_tournaments", "tournaments"
+  add_foreign_key "tournaments", "games", column: "games_id"
   add_foreign_key "user_has_teams", "teams"
   add_foreign_key "user_has_teams", "users"
 end
