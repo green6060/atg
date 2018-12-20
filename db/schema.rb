@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2018_12_20_001920) do
   end
 
   create_table "games", force: :cascade do |t|
+    t.integer "games_id"
+    t.integer "primary_key"
     t.string "game_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

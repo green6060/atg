@@ -1,4 +1,4 @@
 class Game < ApplicationRecord
-  belongs_to :accounts
-  belongs_to :tournaments
+  has_many :accounts
+  has_many :tournaments
 end
