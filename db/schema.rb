@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_224825) do
+ActiveRecord::Schema.define(version: 2018_12_20_001920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2018_12_19_224825) do
     t.bigint "users_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_accounts_on_game_id"
     t.index ["users_id"], name: "index_accounts_on_users_id"
   end
 
@@ -33,10 +35,8 @@ ActiveRecord::Schema.define(version: 2018_12_19_224825) do
 
   create_table "games", force: :cascade do |t|
     t.string "game_name"
-    t.bigint "accounts_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["accounts_id"], name: "index_games_on_accounts_id"
   end
 
   create_table "team_has_tournaments", force: :cascade do |t|
@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 2018_12_19_224825) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "accounts", "games"
   add_foreign_key "accounts", "users", column: "users_id"
   add_foreign_key "announcements", "users"
-  add_foreign_key "games", "accounts", column: "accounts_id"
   add_foreign_key "team_has_tournaments", "teams"
   add_foreign_key "team_has_tournaments", "tournaments"
   add_foreign_key "user_has_teams", "teams"

@@ -6,7 +6,7 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+#################################################################################################
 puts "Creating Admin Account..."
 
 @admin = User.create(
@@ -43,6 +43,8 @@ puts "Creating User Account..."
 puts "Done!"
 puts "Test User Login Credentials - Email: user@user.com, Password: password, Level 1 Access"
 
+#############################################################################################################
+
 print "Creating announcements..."
 
 User.all.each do
@@ -55,6 +57,26 @@ User.all.each do
 end
 
 print "Done!"
+
+##############################################################################################################
+
+print "Creating games..."
+Tournament.create(
+  
+)
+
+
+##############################################################################################################
+print "Creating tournaments..."
+
+5.times do
+  Tournament.create(
+    tournament_name: 'The ' + Faker::ElderScrolls.region + ' Tournament'
+    tournament_description: 'A  test tournament held in the ' + Faker::ElderScrolls.region + 
+  ' region, named randomly after regions of the Elder Scrolls universe.'
+  )
+end
+
 
 puts "Creation Log:"
 puts " Announcements: #{Announcement.count}"
