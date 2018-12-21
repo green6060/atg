@@ -15,7 +15,7 @@ class Home extends Component {
   //Primary render() goes here
   render() {
     return (
-      <Header as="h1" textAlign="center">Always Training Gaming</Header>
+      <Header as="h1" textAlign="center">Coaching</Header>
     );
   }
 }

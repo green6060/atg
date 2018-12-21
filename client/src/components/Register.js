@@ -11,7 +11,6 @@ class Register extends Component {
     e.preventDefault();
     const { dispatch, history } = this.props;
     const { password, passwordConfirmation,  } = this.state
-    debugger
     if (password === passwordConfirmation) {
       dispatch(registerUser(this.state, history));
     } else dispatch(setFlash('Passwords do not match!, please try again', 'red'));
@@ -23,7 +22,7 @@ class Register extends Component {
   }
 
   render() {
-    const { firstName, lastName, email, password, passwordConfirmation } = this.state;
+    const { firstName, lastName, username, email, password, passwordConfirmation } = this.state;
 
     return (
       <Segment basic>
@@ -50,6 +49,18 @@ class Register extends Component {
               placeholder="Last Name"
               required
               value={lastName}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              placeholder="Username"
+              required
+              value={username}
               onChange={this.handleChange}
             />
           </Form.Field>

@@ -7,17 +7,19 @@ import { handleLogout } from '../reducers/user';
 class NavBar extends Component {
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
-
     if (user.id) {
       return (
         <Menu.Menu position='right'>
+          <Link to="/account">
+            <Menu.Item name={user.username} />
+          </Link>
+          <Link to="/account">
+            <Menu.Item name="AT tokens 100" />
+          </Link>
           <Menu.Item
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}
           />
-          <Link to="/account">
-            <Menu.Item name="tokens 100" />
-          </Link>
         </Menu.Menu>
       );
     }
@@ -33,46 +35,38 @@ class NavBar extends Component {
     );
   }
 
-  render() {
-    const { user } = this.props;
+  checkAdminTools = (user) => {
     if (user.level === 3) {
       return (
-        <div>
-          <Menu pointing secondary>
-            <Link to="/">
-              <Menu.Item name="home" />
-            </Link>
-            <Link to="/announcements">
-              <Menu.Item name="announcements" />
-            </Link>
-            <Link to="/tournaments">
-              <Menu.Item name="tournaments" />
-            </Link>
-            <Link to="/admintools">
-              <Menu.Item name="admin tools" />
-            </Link>
-            { this.rightNavs() }
-          </Menu>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <Menu pointing secondary>
-            <Link to="/">
-              <Menu.Item name="home" />
-            </Link>
-            <Link to="/announcements">
-              <Menu.Item name="announcements" />
-            </Link>
-            <Link to="/tournaments">
-              <Menu.Item name="tournaments" />
-            </Link>
-            { this.rightNavs() }
-          </Menu>
-        </div>
-      );
+        <Link to="/admindash">
+          <Menu.Item name="admin tools" />
+        </Link>
+      )
     }
+  }
+
+  render() {
+    const { user } = this.props;
+    return (
+      <div>
+        <Menu pointing secondary>
+          <Link to="/">
+            <Menu.Item name="home" />
+          </Link>
+          <Link to="/announcements">
+            <Menu.Item name="announcements" />
+          </Link>
+          <Link to="/tournaments">
+            <Menu.Item name="tournaments" />
+          </Link>
+          <Link to="/coaching">
+            <Menu.Item name="coaching" />
+          </Link>
+          { this.checkAdminTools(user) }
+          { this.rightNavs() }
+        </Menu>
+      </div>
+    );
   }
 }
 
