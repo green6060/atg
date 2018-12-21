@@ -11,13 +11,16 @@ class NavBar extends Component {
     if (user.id) {
       return (
         <Menu.Menu position='right'>
+          <Link to="/account">
+            <Menu.Item name={user.username} />
+          </Link>
+          <Link to="/account">
+            <Menu.Item name="AT Tokens 100" />
+          </Link>
           <Menu.Item
             name='Logout'
             onClick={() => dispatch(handleLogout(history))}
           />
-          <Link to="/account">
-            <Menu.Item name="tokens 100" />
-          </Link>
         </Menu.Menu>
       );
     }
@@ -35,6 +38,7 @@ class NavBar extends Component {
 
   render() {
     const { user } = this.props;
+
     if (user.level === 3) {
       return (
         <div>
