@@ -7,6 +7,9 @@ import Register from './Register';
 import Flash from './Flash';
 import Home from './Home';
 import Announcements from './Announcements';
+import Tournaments from './Tournaments'
+import Coaching from './Coaching'
+import AdminDash from './AdminDash'
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
@@ -21,6 +24,9 @@ class App extends Component {
           <Switch>
             <ProtectedRoute exact path="/" component={Home} />
             <ProtectedRoute exact path="/announcements" component={Announcements} />
+            <ProtectedRoute exact path="/tournaments" component={Tournaments} />
+            <ProtectedRoute exact path="/coaching" component={Coaching} />
+            <ProtectedRoute exact path="/admindash" component={AdminDash} />
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/register" component={Register} />
             <Route component={NoMatch} />
