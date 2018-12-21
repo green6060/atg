@@ -14,7 +14,7 @@ class NavBar extends Component {
             <Menu.Item name={user.username} />
           </Link>
           <Link to="/account">
-            <Menu.Item name="tokens 100" />
+            <Menu.Item name="AT tokens 100" />
           </Link>
           <Menu.Item
             name='Logout'

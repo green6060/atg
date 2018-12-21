@@ -10,8 +10,8 @@ require 'faker'
 puts "Creating Admin Account..."
 
 @admin = User.create(
-  firstName: 'admin',
-  lastName: 'admin',
+  firstName: 'firstName_admin',
+  lastName: 'lastName_admin',
   username: 'username_admin',
   email: 'admin@admin.com',
   password: 'password',
@@ -19,12 +19,12 @@ puts "Creating Admin Account..."
 )
 
 puts "Done!"
-puts "Test Admin Login Credentials - Email: admin@admin.com, Password: password, Level 3 Access"
+puts "Test Admin Login Credentials - username: username_admin, Email: admin@admin.com, Password: password, Level 3 Access"
 
 puts "Creating Moderator Account..."
 @moderator = User.create(
-  firstName: 'moderator',
-  lastName: 'moderator',
+  firstName: 'firstName_moderator',
+  lastName: 'lastName_moderator',
   username: 'username_moderator',
   email: 'mod@mod.com',
   password: 'password',
@@ -32,32 +32,41 @@ puts "Creating Moderator Account..."
 )
 
 puts "Done!"
-puts "Test Moderator Login Credentials - Email: mod@mod.com, Password: password, Level 2 Access"
+puts "Test Moderator Login Credentials - username: username_moderator, Email: mod@mod.com, Password: password, Level 2 Access"
 
 puts "Creating User Account..."
 @user = User.create(
-  firstName: 'user',
-  lastName: 'user',
+  firstName: 'firstName_user',
+  lastName: 'lastName_user',
   username: 'username_user',
   email: 'user@user.com',
   password: 'password',
 )
 
 puts "Done!"
-puts "Test User Login Credentials - Email: user@user.com, Password: password, Level 1 Access"
+puts "Test User Login Credentials - username: username_user, Email: user@user.com, Password: password, Level 1 Access"
 
 print "Creating announcements..."
 
 User.all.each do
   5.times do
+    random_number = [1, 2].sample
+    if (random_number === 1) 
+      random_username = "username_admin"
+    elsif
+      random_username = "username_moderator"
+    else 
+      random_username = "Whoops"
+    end
     Announcement.create(
       body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote,
-      user_id: 1
+      user_id: random_number,
+      username: random_username,
     )
   end
 end
 
-print "Done!"
+puts "Done!"
 
 puts "Creation Log:"
 puts " Announcements: #{Announcement.count}"
