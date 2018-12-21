@@ -6,7 +6,7 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+#################################################################################################
 puts "Creating Admin Account..."
 
 @admin = User.create(
@@ -46,6 +46,8 @@ puts "Creating User Account..."
 puts "Done!"
 puts "Test User Login Credentials - username: username_user, Email: user@user.com, Password: password, Level 1 Access"
 
+#############################################################################################################
+
 print "Creating announcements..."
 
 User.all.each do
@@ -68,6 +70,56 @@ end
 
 puts "Done!"
 
+##############################################################################################################
+
+print "Creating games..."
+
+# Game.create(
+#   game_name: "PlayerUnknown's Battleground",
+# )
+# Game.create(
+#   game_name: "Overwatch"
+# )
+# Game.create(
+#   game_name: "League of Legends"
+# )
+# Game.create(
+#   game_name: "Counter-Strike: Global Offensive"
+# )
+
+game_array = [
+  "PlayerUnknown's Battleground",
+  "Overwatch", 
+  "League of Legends", 
+  "Counter-Strike: Global Offensive" 
+]
+count = 0
+4.times do
+  Game.create(
+    game_name: game_array[count]
+  )
+  count = count + 1
+end
+
+
+print "Done!"
+
+##############################################################################################################
+
+print "Creating tournaments..."
+
+5.times do
+  Tournament.create(
+    tournament_name: 'The ' + Faker::ElderScrolls.region + ' Tournament',
+    tournament_description: 'A  test tournament held in the ' + Faker::ElderScrolls.region + ' region, named randomly after regions of the Elder Scrolls universe.',
+    games_id: [1, 2, 3].sample
+    )
+end
+
+
 puts "Creation Log:"
-puts " Announcements: #{Announcement.count}"
 puts " Users: #{User.count}"
+puts " Announcements: #{Announcement.count}"
+puts " Games: #{Game.count}"
+puts " Tournaments: #{Tournament.count}"
+
