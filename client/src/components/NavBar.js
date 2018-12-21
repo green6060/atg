@@ -7,10 +7,12 @@ import { handleLogout } from '../reducers/user';
 class NavBar extends Component {
   rightNavs = () => {
     const { user, dispatch, history } = this.props;
-
     if (user.id) {
       return (
         <Menu.Menu position='right'>
+          <Link to="/account">
+            <Menu.Item name={user.username} />
+          </Link>
           <Link to="/account">
             <Menu.Item name="tokens 100" />
           </Link>

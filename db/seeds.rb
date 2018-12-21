@@ -12,6 +12,7 @@ puts "Creating Admin Account..."
 @admin = User.create(
   firstName: 'admin',
   lastName: 'admin',
+  username: 'username_admin',
   email: 'admin@admin.com',
   password: 'password',
   level: 3,
@@ -24,6 +25,7 @@ puts "Creating Moderator Account..."
 @moderator = User.create(
   firstName: 'moderator',
   lastName: 'moderator',
+  username: 'username_moderator',
   email: 'mod@mod.com',
   password: 'password',
   level: 2,
@@ -36,6 +38,7 @@ puts "Creating User Account..."
 @user = User.create(
   firstName: 'user',
   lastName: 'user',
+  username: 'username_user',
   email: 'user@user.com',
   password: 'password',
 )

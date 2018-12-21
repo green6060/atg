@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
-export default class MenuExampleHeaderVertical extends Component {
+
+class AdminDash extends React.Component {
 
   //Contstructor
 
@@ -97,3 +99,11 @@ export default class MenuExampleHeaderVertical extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(AdminDash)
