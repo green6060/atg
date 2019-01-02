@@ -62,7 +62,7 @@ class Announcements extends React.Component {
 
   showAnnouncements = () => {
     const { announcements } = this.state
-    if (announcements){
+  if (announcements) {
       return announcements.map( announcement => {
         return (
           <Segment key={announcement.id}>

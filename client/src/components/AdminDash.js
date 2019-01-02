@@ -1,99 +1,112 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Button, Image, List, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-
+import Axios from 'axios';
 
 class AdminDash extends React.Component {
 
   //Contstructor
 
   //State Declaration
+  state = { announcements: [], games: [], tournaments: [], coaches: [], users: [] }
 
   //Lifecycle Functions
+  componentDidMount() {
+    Axios.get('/api/games')
+      .then( res => this.setState({ games: res.data }) )
+  }
 
   //Functions
-  handleItemClick = (name) => this.setState({ activeItem: name })
+
+  buildGamesStepOne = () => {
+    debugger
+    return (
+    <List divided verticalAlign='middle'>
+      {this.buildGamesStepTwo()}
+    </List>)
+  }
+
+  buildGamesStepTwo = () => {
+    const { games } = this.state
+    debugger
+    if ( games.length != 0 ) {
+      return games.map(game => {
+        return(     
+        <List.Item key={game.id}>
+          <List.Content floated='right'>
+            <Button>Edit</Button>
+            <Button>Delete</Button>
+          </List.Content>
+        <List.Content>{game.game_name}</List.Content>
+      </List.Item>
+      )
+      })
+    } else {
+      return(      
+      <List.Item>
+        <List.Content>
+          We're sorry, there don't seem to be any games available right now. Try later, or contact support!
+        </List.Content>
+      </List.Item>
+      )
+
+    }
+  }
+
+  buildMiscellaneous = () => {
+    //List includes:
+    //Manage User Titles
+    //Manage User Punishments
+    //Manage User Permissions
+  }
 
   //Primary Render
   render() {
-    const { activeItem } = this.state || {}
-
     return (
-      <Menu vertical>
+      <Menu>
         <Menu.Item>
-          <Menu.Header>Announcements</Menu.Header>
-
-          <Menu.Menu>
+          <Menu.Header>
             <Menu.Item
-              name='viewAnnouncements'
-              active={activeItem === 'viewAnnouncements'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              name='addDeleteOrEditAnnouncements'
-              active={activeItem === 'addDeleteOrEditAnnouncements'}
-              onClick={this.handleItemClick}
-            />
-          </Menu.Menu>
+                name='announcementSettings'
+                onClick={this.buildAnnouncementsStepOne}
+              />
+          </Menu.Header>
         </Menu.Item>
 
         <Menu.Item>
-          <Menu.Header>Tournaments</Menu.Header>
-
-          <Menu.Menu>
+          <Menu.Header>
             <Menu.Item
-              name='viewTournaments'
-              active={activeItem === 'viewTournaments'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              name='addDeleteOrEditTournaments'
-              active={activeItem === 'addDeleteOrEditTournaments'}
-              onClick={this.handleItemClick}
-            />
-          </Menu.Menu>
+                name='gameSettings'
+                onClick={this.buildGamesStepOne}
+              />
+          </Menu.Header>
         </Menu.Item>
 
         <Menu.Item>
-          <Menu.Header>Coaching</Menu.Header>
-
-          <Menu.Menu>
+          <Menu.Header>
             <Menu.Item
-              name='viewCoaches'
-              active={activeItem === 'viewCoaches'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              name='addDeleteOrEditCoaches'
-              active={activeItem === 'addDeleteOrEditCoaches'}
-              onClick={this.handleItemClick}
-            />
-          </Menu.Menu>
+                name='tournamentSettings'
+                onClick={this.buildTournamentsStepOne}
+              />
+          </Menu.Header>
         </Menu.Item>
 
         <Menu.Item>
-          <Menu.Header>Other</Menu.Header>
+          <Menu.Header>
+            <Menu.Item
+                name='coachSettings'
+                onClick={this.buildCoachesStepOne}
+              />
+          </Menu.Header>
+        </Menu.Item>
 
-          <Menu.Menu>
-            <Menu.Item 
-              name='titleSettings' 
-              active={activeItem === 'titleSettings'} 
-              onClick={this.handleItemClick}>
-            </Menu.Item>
-
-            <Menu.Item 
-              name='punishmentSettings' 
-              active={activeItem === 'punishmentSettings'} 
-              onClick={this.handleItemClick}>
-            </Menu.Item>
-
-            <Menu.Item 
-              name='permissions' 
-              active={activeItem === 'permissions'} 
-              onClick={this.handleItemClick}>
-            </Menu.Item>
-          </Menu.Menu>
-
+        <Menu.Item>
+          <Menu.Header>
+            <Menu.Item
+                name='miscellaneousSettings'
+                onClick={this.buildMiscellaneous}
+              />
+          </Menu.Header>
         </Menu.Item>
       </Menu>
     )
