@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import {
     Container,
@@ -9,8 +8,6 @@ import {
     Button,
     TextArea,
 } from 'semantic-ui-react'
-import { stat } from 'fs';
-
 
 class AnnouncementForm extends React.Component {
   state = { body: '', user_id: ''  }

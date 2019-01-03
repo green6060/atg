@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import AnnouncementForm from './AnnouncementForm'
-import { formatDateDisplay } from '../utils/time'
+import { formatDateDisplay } from '../../utils/time'
 import axios from 'axios'
 
 class Announcements extends React.Component {

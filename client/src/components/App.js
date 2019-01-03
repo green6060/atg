@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import NoMatch from './NoMatch';
-import NavBar from './NavBar';
+import NavBar from './NavBar/NavBar';
 import Login from './Login';
 import Register from './Register';
 import Flash from './Flash';
-import Home from './Home';
-import Announcements from './Announcements';
-import Tournaments from './Tournaments'
-import Coaching from './Coaching'
-import AdminDash from './AdminDash'
+import Home from './Home/Home';
+import Announcements from './Announcements/Announcements';
+import Tournaments from './Tournament/Tournaments'
+import Coaching from './Coaching/Coaching'
+import AdminDash from './AdminDash/AdminDash'
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';

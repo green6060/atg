@@ -9,10 +9,8 @@ import {
     Button,
     TextArea,
 } from 'semantic-ui-react'
-import { stat } from 'fs';
 
-
-class AnnouncementForm extends React.Component {
+class GameForm extends React.Component {
   state = { body: '', user_id: ''  }
 
   componentDidMount() {
@@ -35,20 +33,20 @@ class AnnouncementForm extends React.Component {
     const { toggleForm } = this.props
     const { body, user_id } = this.state
     const { username } = this.props.user
-    const announcement = { body, user_id, username }
-    // pass announcement object back to announcement component
+    const game = { body, user_id, username }
+    // pass game object back to game component
     this.setState({ body: '' })
-    toggleForm(announcement)
+    toggleForm(game)
   }
 
   render() {
     return (
       <Container>
         <Segment basic>
-        <Header as='h1'>Create Announcement</Header>
+        <Header as='h1'>Create Game</Header>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Field control={TextArea} label='Announcement' onChange={this.handleEditorChange} 
-            placeholder='Enter Your Announcement Here' />
+            <Form.Field control={TextArea} label='Game' onChange={this.handleEditorChange} 
+            placeholder='Enter Your Game Here' />
             <Button type='submit'>Save</Button>
             <Button onClick={this.props.toggleForm}>Cancel</Button>
           </Form>
@@ -64,4 +62,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AnnouncementForm)
+export default connect(mapStateToProps)(GameForm)
