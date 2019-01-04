@@ -7,48 +7,45 @@ import {
     Segment,
     Header,
     Button,
-    TextArea,
+    Input,
 } from 'semantic-ui-react'
 import { stat } from 'fs';
 
 
-class AnnouncementForm extends React.Component {
-  state = { body: '', user_id: ''  }
+class TournamentForm extends React.Component {
+  state = { tournament_name: ''  }
 
   componentDidMount() {
-    if (this.props.user) {
-      this.setState({ user_id: this.props.user.id })
-    }
+    this.setState({ tournament_name: '' })
   }
 
   handleEditorChange = (e) => {
     const { value } = e.target
-    this.setState({ body: value })
+    this.setState({ tournament_name: value })
   }
   
   handleChange = (e) => {
-    const { name, value } = e.target
-    this.setState({ [name]: value })
+    const { tournament_name, value } = e.target
+    this.setState({ [tournament_name]: value })
   }
 
   handleSubmit = () => {
-    const { toggleForm } = this.props
-    const { body, user_id } = this.state
-    const { username } = this.props.user
-    const announcement = { body, user_id, username }
-    // pass announcement object back to announcement component
-    this.setState({ body: '' })
-    toggleForm(announcement)
+    const { tournament_name } = this.state
+    //const { game_name } = this.props
+    // const tournament = { tournament_name, game_name }
+    // pass tournament object back to tournament component
+    this.setState({ tournament_name: '' })
+    // PostRequest(tournament)
   }
 
   render() {
     return (
       <Container>
         <Segment basic>
-        <Header as='h1'>Create Announcement</Header>
+        <Header as='h1'>Create Tournament</Header>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Field control={TextArea} label='Announcement' onChange={this.handleEditorChange} 
-            placeholder='Enter Your Announcement Here' />
+            <Form.Field control={Input} label='Tournament' onChange={this.handleEditorChange} 
+            placeholder='Enter Your Tournament Here' />
             <Button type='submit'>Save</Button>
             <Button onClick={this.props.toggleForm}>Cancel</Button>
           </Form>
@@ -64,4 +61,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AnnouncementForm)
+export default connect(mapStateToProps)(TournamentForm)
