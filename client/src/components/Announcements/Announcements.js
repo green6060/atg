@@ -10,7 +10,7 @@ import {
 import { Link } from 'react-router-dom'
 import AnnouncementForm from './AnnouncementForm'
 import { formatDateDisplay } from '../../utils/time'
-import axios from 'axios'
+import Axios from 'axios'
 
 class Announcements extends React.Component {
   constructor(props) {
@@ -26,13 +26,12 @@ class Announcements extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/announcements')
+    Axios.get('/api/announcements')
       .then( res => this.setState({ announcements: res.data }) )
   }
 
   handleDelete = (announcementId) => {
-    axios.delete(`/api/announcements/${announcementId}`)
-    this.updateAnnouncementsOnPage()
+    Axios.delete(`/api/announcements/${announcementId}`)
   }
 
   buildCrudButtons = (announcement) => {
@@ -105,12 +104,12 @@ class Announcements extends React.Component {
   }
 
   updateAnnouncementsOnPage() {
-    axios.get('/api/announcements')
+    Axios.get('/api/announcements')
       .then( res => this.setState({ announcements: res.data }) )
   }
 
   handleSubmit = (announcement) => {
-    axios.post(`/api/announcements`, announcement)
+    Axios.post(`/api/announcements`, announcement)
     this.updateAnnouncementsOnPage()
   }
 
