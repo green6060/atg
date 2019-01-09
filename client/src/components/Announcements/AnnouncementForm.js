@@ -16,6 +16,9 @@ class AnnouncementForm extends React.Component {
     if (this.props.user) {
       this.setState({ user_id: this.props.user.id })
     }
+    if (this.props.body) {
+      this.setState({ body: this.props.body.body})
+    }
   }
 
   handleEditorChange = (e) => {
@@ -29,25 +32,34 @@ class AnnouncementForm extends React.Component {
   }
 
   handleSubmit = () => {
-    const { toggleForm } = this.props
+    const { toggleFormCreate } = this.props
     const { body, user_id } = this.state
     const { username } = this.props.user
     const announcement = { body, user_id, username }
     // pass announcement object back to announcement component
     this.setState({ body: '' })
-    toggleForm(announcement)
+    toggleFormCreate(announcement)
+  }
+
+  toggleFormOff = () => {
+    this.setState(
+      {
+        editingAnnouncement: false,
+        creatingAnnouncement: false,
+      }
+    )
   }
 
   render() {
     return (
       <Container>
         <Segment basic>
-        <Header as='h1'>Create Announcement</Header>
+        <Header as='h1'>Announcement</Header>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Field control={TextArea} label='Announcement' onChange={this.handleEditorChange} 
+            <Form.Field control={TextArea} value={this.state.body} label='Announcement' onChange={this.handleEditorChange} 
             placeholder='Enter Your Announcement Here' />
             <Button type='submit'>Save</Button>
-            <Button onClick={this.props.toggleForm}>Cancel</Button>
+            <Button onClick={this.props.toggleFormOff}>Cancel</Button>
           </Form>
         </Segment>
       </Container>

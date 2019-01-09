@@ -17,7 +17,13 @@ class Announcements extends React.Component {
     super(props)
     }
 
-  state = { creatingAnnouncement: false, announcements: [] }
+  state = {
+    creatingAnnouncement: false,
+    editingAnnouncement: false,
+    announcements: [], 
+    announcementIdInEdit: '',
+    announcementBodyInEdit: '',
+  }
 
   componentDidMount() {
     axios.get('/api/announcements')
@@ -36,10 +42,11 @@ class Announcements extends React.Component {
       <>
         <Button
         size='mini'
-        onClick={() => this.handleEdit(announcement.id)}
+        onClick={() => this.toggleFormEdit(announcement.id, announcement.body)}
         >
           Edit
         </Button>
+
         <Button
         size='mini'
         onClick={() => this.handleDelete(announcement.id)}
@@ -107,42 +114,73 @@ class Announcements extends React.Component {
     this.updateAnnouncementsOnPage()
   }
 
-  toggleForm = (announcement) => {
+  toggleFormCreate = (announcement) => {
     if (announcement.body !== undefined){
       this.handleSubmit(announcement)
-      this.setState( state => ({ creatingAnnouncement: !state.creatingAnnouncement}) )
+      this.setState(
+        {
+          editingAnnouncement: false,
+          creatingAnnouncement: !this.state.creatingAnnouncement,
+        } 
+      )
     } else { 
-      this.setState( state => ({ creatingAnnouncement: !state.creatingAnnouncement}) )
+      this.setState(
+        {
+          editingAnnouncement: false,
+          creatingAnnouncement: !this.state.creatingAnnouncement,
+        }
+      )
     }
+  }
+
+  toggleFormEdit = (announcementId, body) => {
+    this.setState(
+      { 
+        creatingAnnouncement: false,
+        announcementIdInEdit: {announcementId},
+        announcementBodyInEdit: {body},
+        editingAnnouncement: !this.state.editingAnnouncement,
+      } 
+    )
   }
 
   render () {
     const { creatingAnnouncement } = this.state
+    const { editingAnnouncement } = this.state
     const { level } = this.props.user
-    return (
-      <>
-        { creatingAnnouncement ? 
-          <AnnouncementForm 
-          toggleForm={this.toggleForm}
+
+      {if (creatingAnnouncement === true){
+        return(
+        <AnnouncementForm 
+          toggleFormCreate={this.toggleFormCreate}
+        />
+        )
+      } else if (editingAnnouncement === true){
+        return(
+          <AnnouncementForm
+            toggleFormCreate={this.toggleFormCreate}
+            announcementId={this.state.announcementIdInEdit}
+            body={this.state.announcementBodyInEdit}
           />
-          :
+        )
+      } else 
+        return(
           <>
             <Header as='h1'> 
               Announcements
-              { level > 1 &&
-              <Button floated='right' onClick={this.toggleForm}>
-              Add Announcement
-              </Button>
-            }
-              
-
+                {level > 1 &&
+                  <Button floated='right' onClick={this.toggleFormCreate}>
+                    Add Announcement
+                  </Button>
+                }
             </Header>
+
             <Divider />
+            
             {this.showAnnouncements()}
           </>
-        }
-      </>
-    )
+        )
+    }
   }
 }
 
