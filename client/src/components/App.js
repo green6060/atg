@@ -7,6 +7,8 @@ import Register from './Register';
 import Flash from './Flash';
 import Home from './Home/Home';
 import Announcements from './Announcements/Announcements';
+import Announcement from './Announcements/Announcement';
+import AnnouncementForm from './Announcements/AnnouncementForm';
 import Tournaments from './Tournament/Tournaments'
 import Coaching from './Coaching/Coaching'
 import AdminDash from './AdminDash/AdminDash'
@@ -24,6 +26,8 @@ class App extends Component {
           <Switch>
             <ProtectedRoute exact path="/" component={Home} />
             <ProtectedRoute exact path="/announcements" component={Announcements} />
+            <ProtectedRoute exact path="/announcement/:id" component={Announcement} />
+            <ProtectedRoute exact path="/announcementForm" component={AnnouncementForm} />
             <ProtectedRoute exact path="/tournaments" component={Tournaments} />
             <ProtectedRoute exact path="/coaching" component={Coaching} />
             <ProtectedRoute exact path="/admindash" component={AdminDash} />

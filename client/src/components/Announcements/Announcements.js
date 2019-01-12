@@ -15,7 +15,7 @@ import Axios from 'axios'
 class Announcements extends React.Component {
   constructor(props) {
     super(props)
-    }
+  }
 
   state = {
     creatingAnnouncement: false,
@@ -90,10 +90,10 @@ class Announcements extends React.Component {
             <div>
               <Button
                 as={Link}
-                to={`/api/announcements/${announcement.id}`}
+                to={`/announcement/${announcement.id}`}
                 size='mini'
               >
-                  Comments
+                  Comment
               </Button>
               {this.buildCrudButtons(announcement)}
             </div>
