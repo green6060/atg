@@ -72,20 +72,26 @@ puts "Done!"
 
 ##############################################################################################################
 
-print "Creating games..."
+print "Creating Comments..."
 
-# Game.create(
-#   game_name: "PlayerUnknown's Battleground",
-# )
-# Game.create(
-#   game_name: "Overwatch"
-# )
-# Game.create(
-#   game_name: "League of Legends"
-# )
-# Game.create(
-#   game_name: "Counter-Strike: Global Offensive"
-# )
+announcement_count = 0
+Announcement.all.each do
+  announcement_count += 1
+  5.times do
+    random_user_id = [1, 2, 3].sample
+    Comment.create(
+      body: Faker::BackToTheFuture.quote,
+      user_id: random_user_id,
+      announcement_id: announcement_count,
+    )
+  end
+end
+
+puts "Done!"
+
+##############################################################################################################
+
+print "Creating games..."
 
 game_array = [
   "PlayerUnknown's Battleground",
@@ -120,6 +126,7 @@ end
 puts "Creation Log:"
 puts " Users: #{User.count}"
 puts " Announcements: #{Announcement.count}"
+puts " Comments: #{Comment.count}"
 puts " Games: #{Game.count}"
 puts " Tournaments: #{Tournament.count}"
 

@@ -6,25 +6,25 @@ import {
   Divider,
   Button,
 } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
 import { formatDateDisplay } from '../../utils/time'
 import Axios from 'axios'
 
 export class Announcement extends Component {
 
   state = {
-    announcement: []
+    announcement: [],
+    comments: [],
   }
   
   componentDidMount() {
     const announcement_id = this.props.match.params.id
+
     Axios.get(`/api/announcements/${announcement_id}`)
       .then( res => this.setState({ announcement: res.data }) )
   }
 
   render() {
     const { announcement } = this.state
-    debugger
     return (
       <Segment>
         <Grid columns={1}>

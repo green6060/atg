@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :announcements
     resources :tournaments
     resources :games
+    resources :comments
   end
 
   #Do not place any routes below this one

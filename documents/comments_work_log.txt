@@ -1,0 +1,9 @@
+1. Create Comments Migration / Migrate table - DONE
+2. Create Comments Controller / Model Relationships - DONE
+3. Update Routes table to account for comments - DONE
+4. Seed Comments - DONE
+------------------------------------------------------------------
+5. READ - Display comments with appropriate Announcement
+6. CREATE - Make comment creation form / buttons / permissions, etc
+7. UPDATE - Make comment update form / buttons / permissions, etc
+8. DESTROY - Make comment delete request / button / permissions
