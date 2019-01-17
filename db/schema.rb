@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_235908) do
+ActiveRecord::Schema.define(version: 2019_01_17_001123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,22 +26,18 @@ ActiveRecord::Schema.define(version: 2019_01_14_235908) do
   end
 
   create_table "announcements", force: :cascade do |t|
-    t.string "body"
-    t.bigint "user_id"
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username", null: false
-    t.index ["user_id"], name: "index_announcements_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "body"
-    t.bigint "user_id"
-    t.bigint "announcement_id"
+    t.string "name"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["announcement_id"], name: "index_comments_on_announcement_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.integer "announcement_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -119,9 +115,6 @@ ActiveRecord::Schema.define(version: 2019_01_14_235908) do
 
   add_foreign_key "accounts", "games"
   add_foreign_key "accounts", "users", column: "users_id"
-  add_foreign_key "announcements", "users"
-  add_foreign_key "comments", "announcements"
-  add_foreign_key "comments", "users"
   add_foreign_key "team_has_tournaments", "teams"
   add_foreign_key "team_has_tournaments", "tournaments"
   add_foreign_key "tournaments", "games", column: "games_id"

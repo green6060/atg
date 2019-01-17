@@ -1,26 +1,16 @@
 class Api::CommentsController < ApplicationController
-  before_action :set_announcement, only: [:show, :create, :update]
-
-
-  def index
-  end
 
   def create
-  end
-
-  def show
-    render json: Comment.announcement_comments(@announcement.id)
-  end
-
-  def update
-  end
+    @announcement = Announcement.find(params[:announcement_id])
+    @comment = @post.comments.create(params[:comment].permit(:name, :comment))
+    redirect_to post_path(@post)
+end
 
   def destroy
-  end
-
-  private
-  def set_announcement
-    @announcement = Announcement.find(params[:announcement_id])
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+    redirect_to post_path(@post)
   end
 
 

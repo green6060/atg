@@ -1,63 +1,52 @@
 class Api::AnnouncementsController < ApplicationController
-  before_action :set_announcement, only: [:show, :update, :destroy]
-
-  def index    
-    render json: Announcement.all.order("created_at DESC")
+  def index
+    @announcement = Announcement.all.order("created_at DESC")
   end
-
-  def show
-    render json: @announcement
-  end
-
 
   def new
     @announcement = Announcement.new
   end
 
-  def edit
+  def create
+    @announcement = Announcement.new(announcement_params)
+
+    if @announcement.save
+        redirect_to @announcement
+    else
+        render 'new'
+    end
   end
 
-  def create
-    announcement = Announcement.new(announcement_params)
-
-    if announcement.save
-      render json: build_announcement(announcement)
-    else
-      render json: announcement.errors, status: 422
-    end
+  def show
+    @announcement = Announcement.find(params[:id])
   end
 
   def update
+    @announcement = Announcement.find(params[:id])
+
     if @announcement.update(announcement_params)
-      render json: @announcement
+        redirect_to @announcement
     else
-      render json: @announcement.errors, status: 422
+        render 'edit'
     end
   end
 
+  def edit
+    @announcement = Announcement.find(params[:id])
+  end
+
   def destroy
+    @announcement = Announcement.find(params[:id])
     @announcement.destroy
+
+    redirect_to announcements_path
+
   end
 
   private
 
-    def build_announcement(announcement)
-      {
-        id: announcement.id,
-        body: announcement.body,
-        username: announcement.username,
-        user_id: announcement.user_id,
-        created_at: announcement.created_at,
-        updated_at: announcement.updated_at,
-      }
-    end
+  def announcement_params
+    params.require(:announcement).permit(:title, :content)
+  end
 
-    def set_announcement
-      
-      @announcement = Announcement.find(params[:id])
-    end
-
-    def announcement_params
-      params.require(:announcement).permit(:body, :username, :user_id)
-    end
 end

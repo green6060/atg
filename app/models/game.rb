@@ -1,4 +1,4 @@
 class Game < ApplicationRecord
-  has_many :accounts
-  has_many :tournaments
+  has_many :accounts, dependent: :destroy
+  has_many :tournaments, dependent: :destroy
 end
