@@ -50,29 +50,49 @@ puts "Test User Login Credentials - username: username_user, Email: user@user.co
 
 print "Creating announcements..."
 
-User.all.each do
-  5.times do
-    random_number = [1, 2].sample
-    if (random_number === 1) 
-      random_username = "username_admin"
-    elsif
-      random_username = "username_moderator"
-    else 
-      random_username = "Whoops"
-    end
-    Announcement.create(
-      body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote,
-      user_id: random_number,
-      username: random_username,
-    )
-  end
+# User.all.each do
+#   5.times do
+#     random_number = [1, 2].sample
+#     if (random_number === 1) 
+#       random_username = "username_admin"
+#     elsif
+#       random_username = "username_moderator"
+#     else 
+#       random_username = "Whoops"
+#     end
+#     Announcement.create(
+#       body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote,
+#       user_id: random_number,
+#       username: random_username,
+#     )
+#   end
+# end
+
+5.times do
+  Announcement.create(
+    body: Faker::HarryPotter.quote + ' ' + Faker::GameOfThrones.quote + ' ' + Faker::BackToTheFuture.quote,
+)
 end
 
 puts "Done!"
 
 ##############################################################################################################
 
-print "Creating Comments..."
+# print "Creating Comments..."
+
+# announcement_count = 0
+# Announcement.all.each do
+#   announcement_count += 1
+#   5.times do
+#     random_user_id = [1, 2, 3].sample
+#     Comment.create(
+#       body: Faker::BackToTheFuture.quote,
+#       user_id: random_user_id,
+#       announcement_id: announcement_count,
+#     )
+#   end
+# end
+print "Creating comments..."
 
 announcement_count = 0
 Announcement.all.each do
@@ -80,9 +100,9 @@ Announcement.all.each do
   5.times do
     random_user_id = [1, 2, 3].sample
     Comment.create(
-      body: Faker::BackToTheFuture.quote,
-      user_id: random_user_id,
-      announcement_id: announcement_count,
+      comment: Faker::BackToTheFuture.quote,
+      name: "Random",
+      announcement_id: [1, 2, 3, 4, 5].sample,
     )
   end
 end
@@ -122,6 +142,7 @@ print "Creating tournaments..."
     )
 end
 
+##############################################################################################################
 
 puts "Creation Log:"
 puts " Users: #{User.count}"

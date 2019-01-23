@@ -1,10 +1,11 @@
 class Api::AnnouncementsController < ApplicationController
+
   def index
-    @announcement = Announcement.all.order("created_at DESC")
+    render json: Announcement.all.order("created_at DESC")
   end
 
   def new
-    @announcement = Announcement.new
+    render json: Announcement.new
   end
 
   def create
@@ -18,7 +19,7 @@ class Api::AnnouncementsController < ApplicationController
   end
 
   def show
-    @announcement = Announcement.find(params[:id])
+    render json: Announcement.find(params[:id])
   end
 
   def update
@@ -46,7 +47,8 @@ class Api::AnnouncementsController < ApplicationController
   private
 
   def announcement_params
-    params.require(:announcement).permit(:title, :content)
+    binding.pry
+    params.require(:announcement).permit(:body)
   end
 
 end

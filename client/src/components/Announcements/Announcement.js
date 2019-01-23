@@ -19,8 +19,20 @@ export class Announcement extends Component {
   componentDidMount() {
     const announcement_id = this.props.match.params.id
 
-    Axios.get(`/api/announcements/${announcement_id}`)
-      .then( res => this.setState({ announcement: res.data }) )
+    // Axios.get(`/api/announcements/${announcement_id}`)
+    //   .then( res => this.setState({ announcement: res.data }) )
+    Axios.get(`/api/comments/${announcement_id}`)
+    .then( res => this.setState({ comments: res.data }) )
+
+    // Axios.all([
+    //   Axios.get(`/api/announcements/${announcement_id}`),
+    //   Axios.get(`/api/comments/${announcement_id}`)
+    // ])
+    // .then(axios.spread(function (announcementResponse, commentResponse) {
+    //   //... but this callback will be executed only when both requests are complete.
+    //   console.log('Announcement: ', announcementResponse.data);
+    //   console.log('Repositories', commentResponse.data);
+    // }));
   }
 
   render() {
@@ -36,8 +48,8 @@ export class Announcement extends Component {
               <div>{formatDateDisplay(announcement.created_at)}</div>
               <Divider/>
               <div>{announcement.body}</div>
-              <Divider/>
-              <div>{`ATG_${announcement.username}`}</div>
+              {/* <Divider/>
+              <div>{`ATG_${announcement.username}`}</div> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>

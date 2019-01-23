@@ -81,8 +81,8 @@ class Announcements extends React.Component {
                   <div>{formatDateDisplay(announcement.created_at)}</div>
                   <Divider/>
                   <div>{announcement.body}</div>
-                  <Divider/>
-                  <div>{`ATG_${announcement.username}`}</div>
+                  {/* <Divider/> */}
+                  {/* <div>{`ATG_${announcement.username}`}</div> */}
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -110,7 +110,7 @@ class Announcements extends React.Component {
 
   handleSubmit = (announcement) => {
     Axios.post(`/api/announcements`, announcement)
-    this.updateAnnouncementsOnPage()
+      .then( res => this.setState({ announcements: res.data }))
   }
 
   toggleFormCreate = (announcement) => {
